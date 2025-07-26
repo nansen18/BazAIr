@@ -77,7 +77,7 @@ We're building for real change — to bring technology to the unsung heroes behi
 ## 💬 Contact
 
 Feel free to connect with us at:  
-📧 codeclashers.team@gmail.com
+📧 clasherscode@gmail.com
 
 ---
 
