@@ -4,7 +4,7 @@ BazAIr is a web-based AI-powered assistant built for India's street food vendors
 
 ## 🚀 Live Demo
 
-👉 [Click here to try BazAIr](https://your-vercel-or-netlify-link.com)
+👉 [Click here to try BazAIr](https://bazair.vercel.app/)
 
 ---
 
