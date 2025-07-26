@@ -4,10 +4,10 @@ import { Supplier } from '../../types';
 
 interface SupplierCardProps {
   supplier: Supplier;
-  onSelect: (supplier: Supplier) => void;
+  onSelect?: (supplier: Supplier) => void;
 }
 
-export const SupplierCard: React.FC<SupplierCardProps> = ({ supplier, onSelect }) => {
+export const SupplierCard: React.FC<SupplierCardProps> = ({ supplier, onSelect = () => {} }) => {
   const [isSelected, setIsSelected] = useState(false);
 
   const handleSelect = () => {
@@ -57,8 +57,12 @@ export const SupplierCard: React.FC<SupplierCardProps> = ({ supplier, onSelect }
           </div>
         </div>
         <div className="text-right">
-          <div className="text-2xl font-bold text-[#543310]">₹{supplier.price}</div>
-          <div className="text-sm text-gray-500">per order</div>
+          <div className="flex items-center space-x-1 mb-1">
+            <span className="text-xs bg-[#ADEFD1] text-[#543310] px-2 py-1 rounded-full font-medium">
+              {Math.round(supplier.rating * 20)}% match
+            </span>
+          </div>
+          <div className="text-sm text-gray-500">{supplier.eta}</div>
         </div>
       </div>
 
@@ -68,15 +72,15 @@ export const SupplierCard: React.FC<SupplierCardProps> = ({ supplier, onSelect }
           <span>{supplier.deliveryTime}</span>
         </div>
         <div className="flex items-center text-sm text-gray-600">
-          <Truck className="w-4 h-4 mr-1" />
-          <span>{supplier.deliveryType}</span>
+          <MapPin className="w-4 h-4 mr-1" />
+          <span className="capitalize">{supplier.priceRange} price</span>
         </div>
       </div>
 
       <div className="mb-4">
         <div className="text-sm text-gray-600 mb-2">Specialties:</div>
         <div className="flex flex-wrap gap-2">
-          {supplier.specialties.map((specialty, index) => (
+          {supplier.speciality.map((specialty, index) => (
             <span
               key={index}
               className="px-2 py-1 bg-[#ADEFD1]/20 text-[#543310] text-xs rounded-full"
