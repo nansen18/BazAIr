@@ -4,6 +4,7 @@ import { SupplierApproval } from './SupplierApproval';
 import { PriceMonitoring } from './PriceMonitoring';
 import { FeedbackSystem } from './FeedbackSystem';
 import { FestivalManager } from './FestivalManager';
+import { OfferManager } from './OfferManager';
 import { Settings, Shield, CheckCircle, AlertTriangle, Calendar } from 'lucide-react';
 
 export const Admin: React.FC = () => {
@@ -14,7 +15,8 @@ export const Admin: React.FC = () => {
     { id: 'suppliers', label: 'Suppliers', icon: Shield },
     { id: 'monitoring', label: 'Monitoring', icon: AlertTriangle },
     { id: 'feedback', label: 'Feedback', icon: Settings },
-    { id: 'festivals', label: 'Festivals', icon: Calendar }
+    { id: 'festivals', label: 'Festivals', icon: Calendar },
+    { id: 'offers', label: 'Smart Offers', icon: Settings }
   ];
 
   return (
@@ -51,6 +53,7 @@ export const Admin: React.FC = () => {
           {activeTab === 'monitoring' && <PriceMonitoring />}
           {activeTab === 'feedback' && <FeedbackSystem />}
           {activeTab === 'festivals' && <FestivalManager />}
+          {activeTab === 'offers' && <OfferManager />}
         </div>
       </div>
     </div>

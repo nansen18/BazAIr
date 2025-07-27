@@ -4,6 +4,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import { GroupOrders } from './components/GroupOrders/GroupOrders';
 import { Suppliers } from './components/Suppliers/Suppliers';
 import { Insights } from './components/Insights/Insights';
+import { SmartOffers } from './components/SmartOffers/SmartOffers';
 import { Admin } from './components/Admin/Admin';
 import { useFestivalTheme } from './hooks/useFestivalTheme';
 
@@ -19,6 +20,8 @@ function App() {
         return <GroupOrders />;
       case 'suppliers':
         return <Suppliers />;
+      case 'rewards':
+        return <SmartOffers />;
       case 'insights':
         return <Insights />;
       case 'admin':

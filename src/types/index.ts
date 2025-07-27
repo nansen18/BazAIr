@@ -95,3 +95,41 @@ export interface FestivalTheme {
     suppliers: string;
   };
 }
+
+export interface UserReward {
+  id: string;
+  type: 'welcome' | 'comeback' | 'loyalty' | 'special';
+  title: string;
+  description: string;
+  couponCode: string;
+  discount: number;
+  emoji: string;
+  expiryDate: string;
+  isRedeemed: boolean;
+  redeemedAt?: string;
+}
+
+export interface UserLoginData {
+  userId: string;
+  lastLoginDate: string;
+  loginCount: number;
+  isFirstTime: boolean;
+  consecutiveDays: number;
+  totalRewards: number;
+  activeRewards: UserReward[];
+}
+
+export interface SmartOffer {
+  id: string;
+  triggerType: 'first_login' | 'comeback' | 'loyalty' | 'special_day';
+  title: string;
+  message: string;
+  reward: {
+    type: 'discount' | 'ai_boost' | 'free_delivery' | 'group_bonus';
+    value: number;
+    couponCode: string;
+    validDays: number;
+  };
+  animation: 'confetti' | 'sparkles' | 'bounce' | 'glow';
+  isActive: boolean;
+}

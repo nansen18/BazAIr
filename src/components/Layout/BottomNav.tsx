@@ -1,5 +1,5 @@
 import React from 'react';
-import { Home, Users, TrendingUp, Settings, Package } from 'lucide-react';
+import { Home, Users, TrendingUp, Settings, Package, Gift } from 'lucide-react';
 import { FestivalTheme } from '../../types';
 
 interface BottomNavProps {
@@ -13,6 +13,7 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentPage, onPageChange,
     { id: 'dashboard', icon: Home, label: 'Home' },
     { id: 'group', icon: Users, label: 'Groups' },
     { id: 'suppliers', icon: Package, label: 'Suppliers' },
+    { id: 'rewards', icon: Gift, label: 'Rewards' },
     { id: 'insights', icon: TrendingUp, label: 'Insights' },
     { id: 'admin', icon: Settings, label: 'Admin' }
   ];
