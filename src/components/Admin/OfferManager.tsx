@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { SmartOffer } from '../../types';
 import { Gift, Plus, Edit3, Trash2, Eye, EyeOff, Settings } from 'lucide-react';
+import { OfferModal } from './OfferModal';
 
 export const OfferManager: React.FC = () => {
   const [offers, setOffers] = useState<SmartOffer[]>([
@@ -50,6 +51,7 @@ export const OfferManager: React.FC = () => {
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingOffer, setEditingOffer] = useState<SmartOffer | null>(null);
+  const [showToast, setShowToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   const toggleOfferStatus = (offerId: string) => {
     setOffers(offers.map(offer => 
@@ -64,6 +66,58 @@ export const OfferManager: React.FC = () => {
       setOffers(offers.filter(offer => offer.id !== offerId));
     }
   };
+
+  const handleSaveOffer = async (offerData: Omit<SmartOffer, 'id'>) => {
+    try {
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      if (editingOffer) {
+        // Update existing offer
+        setOffers(offers.map(offer => 
+          offer.id === editingOffer.id 
+            ? { ...offerData, id: editingOffer.id }
+            : offer
+        ));
+        setShowToast({ message: 'Offer updated successfully! 🎊', type: 'success' });
+      } else {
+        // Add new offer
+        const newOffer: SmartOffer = {
+          ...offerData,
+          id: `offer_${Date.now()}`
+        };
+        setOffers([...offers, newOffer]);
+        setShowToast({ message: 'Offer added successfully! 🎊', type: 'success' });
+      }
+
+      setShowAddModal(false);
+      setEditingOffer(null);
+    } catch (error) {
+      console.error('Error saving offer:', error);
+      setShowToast({ 
+        message: 'Failed to save offer. Please try again.', 
+        type: 'error' 
+      });
+    }
+  };
+
+  const handleEditOffer = (offer: SmartOffer) => {
+    setEditingOffer(offer);
+    setShowAddModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowAddModal(false);
+    setEditingOffer(null);
+  };
+
+  // Auto-hide toast after 3 seconds
+  React.useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => setShowToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
 
   const getTriggerTypeLabel = (type: string) => {
     switch (type) {
@@ -171,6 +225,7 @@ export const OfferManager: React.FC = () => {
                   </button>
                   <button
                     onClick={() => setEditingOffer(offer)}
+                    onClick={() => handleEditOffer(offer)}
                     className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
                     title="Edit"
                   >
@@ -204,27 +259,20 @@ export const OfferManager: React.FC = () => {
         </div>
       )}
 
-      {/* Add/Edit Modal would go here - simplified for this example */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold text-[#543310] mb-4">Add New Smart Offer</h3>
-            <p className="text-gray-600 mb-4">Smart offer creation form would go here...</p>
-            <div className="flex space-x-3">
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="flex-1 bg-gray-200 text-gray-600 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="flex-1 bg-[#ADEFD1] text-[#543310] py-3 rounded-xl font-semibold hover:bg-[#ADEFD1]/80 transition-colors"
-              >
-                Create
-              </button>
-            </div>
-          </div>
+      {/* Offer Modal */}
+      <OfferModal
+        isOpen={showAddModal}
+        onClose={handleCloseModal}
+        onSave={handleSaveOffer}
+        editingOffer={editingOffer}
+      />
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className={`fixed top-4 right-4 z-[10000] px-6 py-3 rounded-lg shadow-lg text-white font-medium transition-all duration-300 animate-in slide-in-from-right-2 ${
+          showToast.type === 'success' ? 'bg-green-500' : 'bg-red-500'
+        }`}>
+          {showToast.message}
         </div>
       )}
     </div>
