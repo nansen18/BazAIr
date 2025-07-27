@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Plus, Edit3, Trash2, Eye, EyeOff } from 'lucide-react';
 import { FestivalTheme } from '../../types';
+import { FestivalModal } from './FestivalModal';
 
 export const FestivalManager: React.FC = () => {
   const [festivals, setFestivals] = useState<FestivalTheme[]>([
@@ -39,6 +40,7 @@ export const FestivalManager: React.FC = () => {
 
   const [showAddModal, setShowAddModal] = useState(false);
   const [editingFestival, setEditingFestival] = useState<FestivalTheme | null>(null);
+  const [showToast, setShowToast] = useState<{ message: string; type: 'success' | 'error' } | null>(null);
 
   const toggleFestivalStatus = (festivalId: string) => {
     setFestivals(festivals.map(festival => 
@@ -53,6 +55,69 @@ export const FestivalManager: React.FC = () => {
       setFestivals(festivals.filter(festival => festival.id !== festivalId));
     }
   };
+
+  const handleSaveFestival = async (festivalData: Omit<FestivalTheme, 'id'>) => {
+    try {
+      // Check for duplicates
+      const isDuplicate = festivals.some(festival => 
+        festival.name.toLowerCase() === festivalData.name.toLowerCase() && 
+        festival.date === festivalData.date &&
+        (!editingFestival || festival.id !== editingFestival.id)
+      );
+
+      if (isDuplicate) {
+        throw new Error('A festival with this name and date already exists');
+      }
+
+      // Simulate API call delay
+      await new Promise(resolve => setTimeout(resolve, 1000));
+
+      if (editingFestival) {
+        // Update existing festival
+        setFestivals(festivals.map(festival => 
+          festival.id === editingFestival.id 
+            ? { ...festivalData, id: editingFestival.id }
+            : festival
+        ));
+        setShowToast({ message: 'Festival updated successfully! 🎊', type: 'success' });
+      } else {
+        // Add new festival
+        const newFestival: FestivalTheme = {
+          ...festivalData,
+          id: `festival_${Date.now()}`
+        };
+        setFestivals([...festivals, newFestival]);
+        setShowToast({ message: 'Festival added successfully! 🎊', type: 'success' });
+      }
+
+      setShowAddModal(false);
+      setEditingFestival(null);
+    } catch (error) {
+      console.error('Error saving festival:', error);
+      setShowToast({ 
+        message: error instanceof Error ? error.message : 'Failed to save festival. Please try again.', 
+        type: 'error' 
+      });
+    }
+  };
+
+  const handleEditFestival = (festival: FestivalTheme) => {
+    setEditingFestival(festival);
+    setShowAddModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowAddModal(false);
+    setEditingFestival(null);
+  };
+
+  // Auto-hide toast after 3 seconds
+  React.useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => setShowToast(null), 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
 
   const formatDate = (dateStr: string) => {
     return new Date(dateStr).toLocaleDateString('en-IN', {
@@ -129,6 +194,7 @@ export const FestivalManager: React.FC = () => {
                   </button>
                   <button
                     onClick={() => setEditingFestival(festival)}
+                    onClick={() => handleEditFestival(festival)}
                     className="p-2 bg-blue-100 text-blue-600 rounded-lg hover:bg-blue-200 transition-colors"
                     title="Edit"
                   >
@@ -162,27 +228,20 @@ export const FestivalManager: React.FC = () => {
         </div>
       )}
 
-      {/* Add/Edit Modal would go here - simplified for this example */}
-      {showAddModal && (
-        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <div className="bg-white rounded-2xl p-6 w-full max-w-md">
-            <h3 className="text-lg font-semibold text-[#543310] mb-4">Add New Festival</h3>
-            <p className="text-gray-600 mb-4">Festival creation form would go here...</p>
-            <div className="flex space-x-3">
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="flex-1 bg-gray-200 text-gray-600 py-3 rounded-xl font-semibold hover:bg-gray-300 transition-colors"
-              >
-                Cancel
-              </button>
-              <button
-                onClick={() => setShowAddModal(false)}
-                className="flex-1 bg-[#ADEFD1] text-[#543310] py-3 rounded-xl font-semibold hover:bg-[#ADEFD1]/80 transition-colors"
-              >
-                Create
-              </button>
-            </div>
-          </div>
+      {/* Festival Modal */}
+      <FestivalModal
+        isOpen={showAddModal}
+        onClose={handleCloseModal}
+        onSave={handleSaveFestival}
+        editingFestival={editingFestival}
+      />
+
+      {/* Toast Notification */}
+      {showToast && (
+        <div className={`fixed top-4 right-4 z-[10000] px-6 py-3 rounded-lg shadow-lg text-white font-medium transition-all duration-300 ${
+          showToast.type === 'success' ? 'bg-green-500' : 'bg-red-500'
+        }`}>
+          {showToast.message}
         </div>
       )}
     </div>
