@@ -72,5 +72,6 @@ const Dashboard: React.FC = () => {
       <RecentOrders />
     </div>
   );
+};
 
 export default Dashboard;
