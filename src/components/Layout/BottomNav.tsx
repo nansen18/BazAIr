@@ -30,11 +30,11 @@ export const BottomNav: React.FC<BottomNavProps> = ({ currentPage, onPageChange,
               key={id}
               onClick={() => onPageChange(id)}
               className={`flex flex-col items-center py-2 px-3 rounded-lg transition-colors`}
-              style={{
+              style={
                 currentPage === id
                   ? { color: activeColor, backgroundColor: activeBgColor }
                   : { color: '#6B7280' }
-              }}
+              }
             >
               <Icon className="w-5 h-5" />
               <span className="text-xs mt-1">{label}</span>
