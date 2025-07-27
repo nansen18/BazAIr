@@ -9,7 +9,7 @@ import { useFestivalTheme } from '../../hooks/useFestivalTheme';
 import { FestivalBanner } from '../Festival/FestivalBanner';
 import { FestivalOffers } from '../Festival/FestivalOffers';
 
-export const Dashboard: React.FC = () => {
+const Dashboard: React.FC = () => {
   const { smartCart, loading, generateSmartCart } = useSmartCartAI();
   const { currentTheme, hasActiveTheme } = useFestivalTheme();
   const [weatherGenerated, setWeatherGenerated] = useState(false);
@@ -72,4 +72,5 @@ export const Dashboard: React.FC = () => {
       <RecentOrders />
     </div>
   );
-};
+
+export default Dashboard;

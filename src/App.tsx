@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layout } from './components/Layout/Layout';
-import { Dashboard } from './components/Dashboard/Dashboard';
+import Dashboard from './components/Dashboard/Dashboard';
 import { GroupOrders } from './components/GroupOrders/GroupOrders';
 import { Suppliers } from './components/Suppliers/Suppliers';
 import { Insights } from './components/Insights/Insights';
