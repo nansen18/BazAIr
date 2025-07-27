@@ -5,9 +5,11 @@ import { GroupOrders } from './components/GroupOrders/GroupOrders';
 import { Suppliers } from './components/Suppliers/Suppliers';
 import { Insights } from './components/Insights/Insights';
 import { Admin } from './components/Admin/Admin';
+import { useFestivalTheme } from './hooks/useFestivalTheme';
 
 function App() {
   const [currentPage, setCurrentPage] = useState('dashboard');
+  const { currentTheme, hasActiveTheme } = useFestivalTheme();
 
   const renderPage = () => {
     switch (currentPage) {
@@ -27,7 +29,11 @@ function App() {
   };
 
   return (
-    <Layout currentPage={currentPage} onPageChange={setCurrentPage}>
+    <Layout 
+      currentPage={currentPage} 
+      onPageChange={setCurrentPage}
+      festivalTheme={hasActiveTheme ? currentTheme : null}
+    >
       {renderPage()}
     </Layout>
   );

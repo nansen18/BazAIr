@@ -3,7 +3,8 @@ import { VendorVerification } from './VendorVerification';
 import { SupplierApproval } from './SupplierApproval';
 import { PriceMonitoring } from './PriceMonitoring';
 import { FeedbackSystem } from './FeedbackSystem';
-import { Settings, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
+import { FestivalManager } from './FestivalManager';
+import { Settings, Shield, CheckCircle, AlertTriangle, Calendar } from 'lucide-react';
 
 export const Admin: React.FC = () => {
   const [activeTab, setActiveTab] = useState('vendors');
@@ -12,7 +13,8 @@ export const Admin: React.FC = () => {
     { id: 'vendors', label: 'Vendors', icon: CheckCircle },
     { id: 'suppliers', label: 'Suppliers', icon: Shield },
     { id: 'monitoring', label: 'Monitoring', icon: AlertTriangle },
-    { id: 'feedback', label: 'Feedback', icon: Settings }
+    { id: 'feedback', label: 'Feedback', icon: Settings },
+    { id: 'festivals', label: 'Festivals', icon: Calendar }
   ];
 
   return (
@@ -48,6 +50,7 @@ export const Admin: React.FC = () => {
           {activeTab === 'suppliers' && <SupplierApproval />}
           {activeTab === 'monitoring' && <PriceMonitoring />}
           {activeTab === 'feedback' && <FeedbackSystem />}
+          {activeTab === 'festivals' && <FestivalManager />}
         </div>
       </div>
     </div>

@@ -5,9 +5,13 @@ import { WeatherCard } from './WeatherCard';
 import { RecentOrders } from './RecentOrders';
 import { useSmartCartAI } from '../../hooks/useAI';
 import { mockVendor } from '../../utils/mockData';
+import { useFestivalTheme } from '../../hooks/useFestivalTheme';
+import { FestivalBanner } from '../Festival/FestivalBanner';
+import { FestivalOffers } from '../Festival/FestivalOffers';
 
 export const Dashboard: React.FC = () => {
   const { smartCart, loading, generateSmartCart } = useSmartCartAI();
+  const { currentTheme, hasActiveTheme } = useFestivalTheme();
   const [weatherGenerated, setWeatherGenerated] = useState(false);
 
   useEffect(() => {
@@ -33,12 +37,30 @@ export const Dashboard: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      {/* Festival Banner */}
+      {hasActiveTheme && currentTheme && (
+        <FestivalBanner theme={currentTheme} />
+      )}
+
       <div className="text-center">
         <h2 className="text-2xl font-bold text-[#543310] mb-2">
-          Welcome back, {mockVendor.name}! 👋
+          {hasActiveTheme && currentTheme 
+            ? currentTheme.customMessages.welcome 
+            : `Welcome back, ${mockVendor.name}! 👋`
+          }
         </h2>
-        <p className="text-gray-600">Let's make today profitable with AI-powered insights</p>
+        <p className="text-gray-600">
+          {hasActiveTheme && currentTheme 
+            ? currentTheme.customMessages.dashboard 
+            : "Let's make today profitable with AI-powered insights"
+          }
+        </p>
       </div>
+
+      {/* Festival Offers */}
+      {hasActiveTheme && currentTheme && (
+        <FestivalOffers theme={currentTheme} />
+      )}
 
       <WeatherCard />
       <QuickStats />

@@ -4,9 +4,11 @@ import { FilterBar } from './FilterBar';
 import { useSupplierMatchAI } from '../../hooks/useAI';
 import { mockCartItems } from '../../utils/mockData';
 import { Package, Sparkles, AlertCircle, RefreshCw } from 'lucide-react';
+import { useFestivalTheme } from '../../hooks/useFestivalTheme';
 
 export const Suppliers: React.FC = () => {
   const { matchedSuppliers, loading, findSuppliers } = useSupplierMatchAI();
+  const { currentTheme, hasActiveTheme } = useFestivalTheme();
   const [hasSearched, setHasSearched] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [buttonLoading, setButtonLoading] = useState(false);
@@ -50,7 +52,12 @@ export const Suppliers: React.FC = () => {
           <Package className="w-8 h-8 text-white" />
         </div>
         <h2 className="text-2xl font-bold text-[#543310] mb-2">Suppliers</h2>
-        <p className="text-gray-600">Find trusted suppliers with the best prices and delivery times</p>
+        <p className="text-gray-600">
+          {hasActiveTheme && currentTheme 
+            ? currentTheme.customMessages.suppliers 
+            : "Find trusted suppliers with the best prices and delivery times"
+          }
+        </p>
       </div>
 
       {!hasSearched && (

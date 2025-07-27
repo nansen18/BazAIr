@@ -64,3 +64,34 @@ export interface OrderHistory {
   supplier: string;
   wastage: number;
 }
+
+export interface FestivalTheme {
+  id: string;
+  name: string;
+  date: string;
+  endDate?: string;
+  isActive: boolean;
+  theme: {
+    primaryColor: string;
+    secondaryColor: string;
+    accentColor: string;
+    gradientFrom: string;
+    gradientTo: string;
+  };
+  banner: {
+    text: string;
+    emoji: string;
+    subtext?: string;
+  };
+  offers: {
+    title: string;
+    description: string;
+    discount: number;
+    emoji: string;
+  }[];
+  customMessages: {
+    welcome: string;
+    dashboard: string;
+    suppliers: string;
+  };
+}

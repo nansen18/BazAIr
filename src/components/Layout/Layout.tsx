@@ -2,14 +2,16 @@ import React from 'react';
 import { useState } from 'react';
 import Navbar from './Navbar';
 import { BottomNav } from './BottomNav';
+import { FestivalTheme } from '../../types';
 
 interface LayoutProps {
   children: React.ReactNode;
   currentPage: string;
   onPageChange: (page: string) => void;
+  festivalTheme?: FestivalTheme | null;
 }
 
-export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange }) => {
+export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageChange, festivalTheme }) => {
   const [toastMessage, setToastMessage] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
 
   const showToast = (message: string, type: 'success' | 'error' | 'info') => {
@@ -28,11 +30,15 @@ export const Layout: React.FC<LayoutProps> = ({ children, currentPage, onPageCha
 
   return (
     <div className="min-h-screen bg-[#FEFEFE] flex flex-col">
-      <Navbar onShowToast={showToast} />
+      <Navbar onShowToast={showToast} festivalTheme={festivalTheme} />
       <main className="flex-1 pb-20 px-4 py-6 max-w-md mx-auto w-full">
         {children}
       </main>
-      <BottomNav currentPage={currentPage} onPageChange={onPageChange} />
+      <BottomNav 
+        currentPage={currentPage} 
+        onPageChange={onPageChange} 
+        festivalTheme={festivalTheme}
+      />
       
       {/* Toast Notification */}
       {toastMessage && (

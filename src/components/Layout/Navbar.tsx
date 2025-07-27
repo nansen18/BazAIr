@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Bell, ShoppingCart, User, Settings, LogOut, UserCircle, X, Save, Camera, Phone, MapPin, Mail } from 'lucide-react';
+import { FestivalTheme } from '../../types';
 
 interface NavbarProps {
   onShowToast?: (message: string, type: 'success' | 'error' | 'info') => void;
+  festivalTheme?: FestivalTheme | null;
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onShowToast }) => {
+const Navbar: React.FC<NavbarProps> = ({ onShowToast, festivalTheme }) => {
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
@@ -77,18 +79,28 @@ const Navbar: React.FC<NavbarProps> = ({ onShowToast }) => {
     }));
   };
 
+  // Apply festival theme colors if available
+  const logoGradient = festivalTheme 
+    ? `linear-gradient(to right, ${festivalTheme.theme.primaryColor}, ${festivalTheme.theme.accentColor})`
+    : 'linear-gradient(to right, #34D399, #F97316)';
+
   return (
     <>
       <nav className="bg-white shadow-sm border-b border-gray-200 px-4 py-3">
       <div className="flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center space-x-2">
-          <div className="w-8 h-8 bg-gradient-to-r from-green-400 to-orange-400 rounded-lg flex items-center justify-center">
+          <div 
+            className="w-8 h-8 rounded-lg flex items-center justify-center"
+            style={{ background: logoGradient }}
+          >
             <ShoppingCart className="w-5 h-5 text-white" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-gray-800">BazAIr</h1>
-            <p className="text-xs text-gray-500">Smarter Streets. Fresher Eats.</p>
+            <p className="text-xs text-gray-500">
+              {festivalTheme ? `${festivalTheme.name} Special!` : 'Smarter Streets. Fresher Eats.'}
+            </p>
           </div>
         </div>
 
