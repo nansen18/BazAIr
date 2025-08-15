@@ -49,9 +49,9 @@ Built for both:
 
 ## 🛠️ Built With
 
-- 🖥️ Frontend: [Lovable AI/Bolt AI]
+- 🖥️ Frontend: React + Typescript
 - 🌐 Hosting: Vercel
-- 🧠 AI: ChatGPT, Bolt-AI logic modules
+- 🧠 AI: OpenAI API + custom logic modules
 - 🔐 Firebase Auth (optional)
 - 📊 Chart.js for analytics visuals
 
