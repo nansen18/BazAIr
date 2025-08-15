@@ -1,13 +1,817 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BazAIr - Smart Street Vendor Platform</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="styles/animations.css">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-content">
+            <!-- Logo -->
+            <div class="nav-logo">
+                <div class="logo-icon">
+                    <i data-lucide="shopping-cart"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>BazAIr</h1>
+                    <p class="tagline">Smarter Streets. Fresher Eats.</p>
+                </div>
+            </div>
+
+            <!-- Right side icons -->
+            <div class="nav-actions">
+                <!-- Notifications -->
+                <div class="nav-item" id="notifications-btn">
+                    <i data-lucide="bell"></i>
+                    <span class="notification-badge"></span>
+                </div>
+
+                <!-- Profile -->
+                <div class="nav-item" id="profile-btn">
+                    <i data-lucide="user"></i>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications Dropdown -->
+        <div class="dropdown" id="notifications-dropdown">
+            <div class="dropdown-header">
+                <h3>Notifications</h3>
+            </div>
+            <div class="dropdown-content">
+                <div class="notification-item">
+                    <p>Your group order has been confirmed</p>
+                    <span class="notification-time">2 min ago</span>
+                </div>
+                <div class="notification-item">
+                    <p>New supplier available in your area</p>
+                    <span class="notification-time">1 hour ago</span>
+                </div>
+                <div class="notification-item">
+                    <p>Price alert: Onions dropped by 15%</p>
+                    <span class="notification-time">3 hours ago</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Dropdown -->
+        <div class="dropdown" id="profile-dropdown">
+            <div class="dropdown-header">
+                <div class="profile-info">
+                    <div class="profile-avatar">
+                        <i data-lucide="user-circle"></i>
+                    </div>
+                    <div>
+                        <h3>Raj Kumar</h3>
+                        <p>T. Nagar, Chennai</p>
+                    </div>
+                </div>
+            </div>
+            <div class="dropdown-content">
+                <button class="dropdown-item" id="settings-btn">
+                    <i data-lucide="settings"></i>
+                    <span>Settings</span>
+                </button>
+                <button class="dropdown-item" id="logout-btn">
+                    <i data-lucide="log-out"></i>
+                    <span>Logout</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Festival Banner (hidden by default) -->
+        <div class="festival-banner" id="festival-banner" style="display: none;">
+            <div class="festival-content">
+                <div class="festival-header">
+                    <span class="festival-emoji">🇮🇳</span>
+                    <h2 class="festival-title">Happy Independence Day!</h2>
+                    <span class="festival-emoji">🇮🇳</span>
+                </div>
+                <p class="festival-subtitle">Celebrating 77 years of freedom</p>
+                <div class="festival-offers">
+                    <div class="festival-offer">
+                        <span>🎆</span>
+                        <span>Freedom Special: 15% OFF</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Page Content Container -->
+        <div class="page-container" id="page-container">
+            <!-- Dashboard Page -->
+            <div class="page" id="dashboard-page">
+                <div class="page-header">
+                    <h2>Welcome back, Raj Kumar! 👋</h2>
+                    <p>Let's make today profitable with AI-powered insights</p>
+                </div>
+
+                <!-- Weather Card -->
+                <div class="card weather-card">
+                    <div class="weather-content">
+                        <div class="weather-info">
+                            <div class="weather-icon">
+                                <i data-lucide="sun"></i>
+                            </div>
+                            <div>
+                                <h3>Chennai Weather</h3>
+                                <p>Perfect day for street food!</p>
+                            </div>
+                        </div>
+                        <div class="weather-temp">
+                            <div class="temp-display">
+                                <i data-lucide="thermometer"></i>
+                                <span>28°C</span>
+                            </div>
+                            <p>Sunny</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="dollar-sign"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value">₹3,240</span>
+                            <span class="stat-label">This Week</span>
+                            <span class="stat-change positive">+12%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="trending-down"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value">₹280</span>
+                            <span class="stat-label">Wastage</span>
+                            <span class="stat-change positive">-18%</span>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i data-lucide="package"></i>
+                        </div>
+                        <div class="stat-content">
+                            <span class="stat-value">24</span>
+                            <span class="stat-label">Orders</span>
+                            <span class="stat-change positive">+8%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Cart Card -->
+                <div class="card smart-cart-card" id="smart-cart-card">
+                    <div class="card-header">
+                        <div class="header-left">
+                            <div class="header-icon">
+                                <i data-lucide="sparkles"></i>
+                            </div>
+                            <h3>SmartCart AI</h3>
+                        </div>
+                        <div class="header-right">
+                            <span class="confidence-badge">89% confident</span>
+                            <button class="icon-btn" id="regenerate-cart">
+                                <i data-lucide="refresh-cw"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="cart-items" id="cart-items">
+                        <!-- Cart items will be populated by JavaScript -->
+                    </div>
+
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span id="cart-total-amount">₹712</span>
+                    </div>
+
+                    <div class="ai-suggestions">
+                        <h4>💡 AI Suggestions:</h4>
+                        <ul id="ai-suggestions-list">
+                            <li>Weather is sunny - increase tomato quantities by 20%</li>
+                            <li>Weekend approaching - stock extra onions</li>
+                            <li>Festival season - consider premium masala pack</li>
+                        </ul>
+                    </div>
+
+                    <div class="cart-actions">
+                        <button class="btn btn-primary" id="order-now-btn">
+                            <i data-lucide="shopping-cart"></i>
+                            <span>Order Now</span>
+                        </button>
+                        <button class="btn btn-secondary" id="edit-cart-btn">
+                            <i data-lucide="edit-3"></i>
+                            <span>Edit</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Orders -->
+                <div class="card recent-orders-card">
+                    <div class="card-header">
+                        <h3>Recent Orders</h3>
+                        <button class="text-btn">View All</button>
+                    </div>
+                    <div class="orders-list">
+                        <div class="order-item">
+                            <div class="order-info">
+                                <div class="order-header">
+                                    <span class="order-id">Order #1</span>
+                                    <span class="order-status delivered">
+                                        <i data-lucide="check-circle"></i>
+                                        Delivered
+                                    </span>
+                                </div>
+                                <p class="order-supplier">FreshFarm Traders</p>
+                                <p class="order-date">2024-01-15</p>
+                            </div>
+                            <div class="order-amount">₹650</div>
+                        </div>
+                        <div class="order-item">
+                            <div class="order-info">
+                                <div class="order-header">
+                                    <span class="order-id">Order #2</span>
+                                    <span class="order-status pending">
+                                        <i data-lucide="clock"></i>
+                                        Pending
+                                    </span>
+                                </div>
+                                <p class="order-supplier">VeggieMart</p>
+                                <p class="order-date">2024-01-14</p>
+                            </div>
+                            <div class="order-amount">₹420</div>
+                        </div>
+                    </div>
+                    <div class="orders-summary">
+                        <div class="summary-item">
+                            <span>Total this week:</span>
+                            <span class="summary-amount">₹1,450</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Group Orders Page -->
+            <div class="page" id="group-page" style="display: none;">
+                <div class="page-header">
+                    <div class="page-icon">
+                        <i data-lucide="users"></i>
+                    </div>
+                    <h2>Group Orders</h2>
+                    <p>Team up with nearby vendors to save on bulk purchases</p>
+                </div>
+
+                <!-- Group Finder -->
+                <div class="card group-finder" id="group-finder">
+                    <div class="finder-content">
+                        <div class="finder-icon">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <h3>GroupBuddy AI</h3>
+                        <p>Let AI find vendors near you who need similar items. Save up to 20% on bulk orders!</p>
+                    </div>
+                    <button class="btn btn-primary" id="find-group-btn">Find Group Partners</button>
+                </div>
+
+                <!-- Group Order Card (hidden initially) -->
+                <div class="card group-order-card" id="group-order-card" style="display: none;">
+                    <div class="card-header">
+                        <div class="header-left">
+                            <div class="header-icon">
+                                <i data-lucide="users"></i>
+                            </div>
+                            <h3>Group Found!</h3>
+                        </div>
+                        <span class="status-badge forming">forming</span>
+                    </div>
+
+                    <div class="group-info">
+                        <p class="group-message">🎉 You're being grouped with 3 other vendors near T. Nagar!</p>
+                        <p class="group-savings">Bulk order discount: 15% saved!</p>
+                    </div>
+
+                    <div class="cost-breakdown">
+                        <div class="cost-item">
+                            <span>Original Total:</span>
+                            <span>₹712</span>
+                        </div>
+                        <div class="cost-item">
+                            <span>Group Discount (15%):</span>
+                            <span class="discount">-₹107</span>
+                        </div>
+                        <div class="cost-item total">
+                            <span>Final Cost:</span>
+                            <span>₹605</span>
+                        </div>
+                    </div>
+
+                    <div class="group-actions">
+                        <button class="btn btn-primary" id="confirm-group-btn">
+                            <i data-lucide="check-circle"></i>
+                            <span>Confirm Group</span>
+                        </button>
+                        <button class="btn btn-secondary" id="pass-group-btn">
+                            <i data-lucide="x"></i>
+                            <span>Pass</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Group Members -->
+                <div class="card group-members" id="group-members" style="display: none;">
+                    <h3>Group Members</h3>
+                    <div class="members-list">
+                        <div class="member-item">
+                            <div class="member-avatar">PD</div>
+                            <div class="member-info">
+                                <h4>Priya Devi</h4>
+                                <div class="member-details">
+                                    <span><i data-lucide="map-pin"></i> T. Nagar, Chennai</span>
+                                    <span><i data-lucide="star"></i> 4.3</span>
+                                </div>
+                            </div>
+                            <span class="verified-badge">✓ Verified</span>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">KS</div>
+                            <div class="member-info">
+                                <h4>Kumar Singh</h4>
+                                <div class="member-details">
+                                    <span><i data-lucide="map-pin"></i> T. Nagar, Chennai</span>
+                                    <span><i data-lucide="star"></i> 4.7</span>
+                                </div>
+                            </div>
+                            <span class="verified-badge">✓ Verified</span>
+                        </div>
+                        <div class="member-item">
+                            <div class="member-avatar">LM</div>
+                            <div class="member-info">
+                                <h4>Lakshmi Menon</h4>
+                                <div class="member-details">
+                                    <span><i data-lucide="map-pin"></i> T. Nagar, Chennai</span>
+                                    <span><i data-lucide="star"></i> 4.4</span>
+                                </div>
+                            </div>
+                            <span class="verified-badge">✓ Verified</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Suppliers Page -->
+            <div class="page" id="suppliers-page" style="display: none;">
+                <div class="page-header">
+                    <div class="page-icon">
+                        <i data-lucide="package"></i>
+                    </div>
+                    <h2>Suppliers</h2>
+                    <p>Find trusted suppliers with the best prices and delivery times</p>
+                </div>
+
+                <!-- Supplier Finder -->
+                <div class="card supplier-finder" id="supplier-finder">
+                    <div class="finder-content">
+                        <div class="finder-icon">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <h3>TrustySupplier AI</h3>
+                        <p>AI will match you with verified suppliers based on your cart, location, and delivery preferences.</p>
+                    </div>
+                    <button class="btn btn-primary" id="find-suppliers-btn">Find Best Suppliers</button>
+                </div>
+
+                <!-- Filter Bar (hidden initially) -->
+                <div class="card filter-bar" id="filter-bar" style="display: none;">
+                    <div class="filter-header">
+                        <i data-lucide="filter"></i>
+                        <span>Filters</span>
+                    </div>
+                    <div class="filter-grid">
+                        <div class="filter-item">
+                            <label>Price Range</label>
+                            <select id="price-filter">
+                                <option value="all">All</option>
+                                <option value="low">Low</option>
+                                <option value="medium">Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Delivery</label>
+                            <select id="delivery-filter">
+                                <option value="all">All</option>
+                                <option value="Same Day">Same Day</option>
+                                <option value="Next Day">Next Day</option>
+                            </select>
+                        </div>
+                        <div class="filter-item">
+                            <label>Rating</label>
+                            <select id="rating-filter">
+                                <option value="all">All</option>
+                                <option value="4.5">4.5+</option>
+                                <option value="4.0">4.0+</option>
+                                <option value="3.5">3.5+</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Suppliers List -->
+                <div class="suppliers-list" id="suppliers-list">
+                    <!-- Suppliers will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Rewards Page -->
+            <div class="page" id="rewards-page" style="display: none;">
+                <div class="page-header">
+                    <div class="page-icon">
+                        <i data-lucide="gift"></i>
+                    </div>
+                    <h2>Smart Rewards</h2>
+                    <p>Your personalized offers and rewards</p>
+                </div>
+
+                <!-- Rewards Summary -->
+                <div class="card rewards-summary">
+                    <div class="summary-content">
+                        <div class="summary-info">
+                            <div class="summary-icon">
+                                <i data-lucide="trending-up"></i>
+                            </div>
+                            <div>
+                                <h3>Rewards Status</h3>
+                                <p>Keep earning more!</p>
+                            </div>
+                        </div>
+                        <div class="summary-stats">
+                            <div class="stat-value" id="active-rewards-count">0</div>
+                            <p>Active</p>
+                        </div>
+                    </div>
+                    <div class="summary-tip">
+                        💡 Login regularly and stay active to unlock more exclusive rewards!
+                    </div>
+                </div>
+
+                <!-- Active Rewards -->
+                <div class="rewards-section" id="active-rewards-section" style="display: none;">
+                    <div class="section-header">
+                        <i data-lucide="gift"></i>
+                        <h3>Active Rewards</h3>
+                        <span class="rewards-count" id="active-count">0</span>
+                    </div>
+                    <div class="rewards-list" id="active-rewards-list">
+                        <!-- Active rewards will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- No Rewards State -->
+                <div class="card no-rewards" id="no-rewards">
+                    <div class="no-rewards-content">
+                        <div class="no-rewards-icon">
+                            <i data-lucide="gift"></i>
+                        </div>
+                        <h3>No Rewards Yet</h3>
+                        <p>Keep using the app to earn exciting rewards and offers!</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Insights Page -->
+            <div class="page" id="insights-page" style="display: none;">
+                <div class="page-header">
+                    <div class="page-icon">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h2>AI Insights</h2>
+                    <p>Reduce waste and optimize your ordering with smart analytics</p>
+                </div>
+
+                <!-- Insights Analyzer -->
+                <div class="card insights-analyzer" id="insights-analyzer">
+                    <div class="analyzer-content">
+                        <div class="analyzer-icon">
+                            <i data-lucide="sparkles"></i>
+                        </div>
+                        <h3>StockSense AI</h3>
+                        <p>Analyze your past orders to identify wastage patterns and get personalized recommendations.</p>
+                    </div>
+                    <button class="btn btn-primary" id="analyze-orders-btn">Analyze My Orders</button>
+                </div>
+
+                <!-- Savings Card (hidden initially) -->
+                <div class="card savings-card" id="savings-card" style="display: none;">
+                    <div class="savings-content">
+                        <div class="savings-info">
+                            <div class="savings-icon">
+                                <i data-lucide="piggy-bank"></i>
+                            </div>
+                            <div>
+                                <h3>This Week's Impact</h3>
+                                <p>Your smart decisions</p>
+                            </div>
+                        </div>
+                        <div class="savings-amount">
+                            <div class="amount-display">
+                                <i data-lucide="trending-up"></i>
+                                <span>₹80</span>
+                            </div>
+                            <p>Saved with groups</p>
+                        </div>
+                    </div>
+                    <div class="savings-tip">
+                        🟢 You saved ₹80 this week by using group buy!
+                    </div>
+                </div>
+
+                <!-- Insights Results -->
+                <div class="insights-results" id="insights-results" style="display: none;">
+                    <!-- Results will be populated by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Admin Page -->
+            <div class="page" id="admin-page" style="display: none;">
+                <div class="page-header">
+                    <div class="page-icon">
+                        <i data-lucide="settings"></i>
+                    </div>
+                    <h2>Admin Panel</h2>
+                    <p>Manage vendors, suppliers, and platform quality</p>
+                </div>
+
+                <!-- Admin Tabs -->
+                <div class="admin-tabs">
+                    <button class="tab-btn active" data-tab="vendors">
+                        <i data-lucide="check-circle"></i>
+                        <span>Vendors</span>
+                    </button>
+                    <button class="tab-btn" data-tab="suppliers">
+                        <i data-lucide="shield"></i>
+                        <span>Suppliers</span>
+                    </button>
+                    <button class="tab-btn" data-tab="monitoring">
+                        <i data-lucide="alert-triangle"></i>
+                        <span>Monitoring</span>
+                    </button>
+                    <button class="tab-btn" data-tab="feedback">
+                        <i data-lucide="message-square"></i>
+                        <span>Feedback</span>
+                    </button>
+                    <button class="tab-btn" data-tab="festivals">
+                        <i data-lucide="calendar"></i>
+                        <span>Festivals</span>
+                    </button>
+                    <button class="tab-btn" data-tab="offers">
+                        <i data-lucide="gift"></i>
+                        <span>Smart Offers</span>
+                    </button>
+                </div>
+
+                <!-- Admin Content -->
+                <div class="admin-content">
+                    <!-- Vendors Tab -->
+                    <div class="tab-content active" id="vendors-tab">
+                        <div class="tab-header">
+                            <h3>Vendor Verification</h3>
+                            <span class="status-badge">2 Pending</span>
+                        </div>
+                        <div class="admin-list">
+                            <div class="admin-item">
+                                <div class="item-info">
+                                    <h4>Arjun Patel</h4>
+                                    <p>Adyar, Chennai • +91 94321 67890</p>
+                                    <div class="item-tags">
+                                        <span class="tag">ID Card</span>
+                                        <span class="tag">Address Proof</span>
+                                    </div>
+                                </div>
+                                <div class="item-actions">
+                                    <button class="btn btn-sm btn-primary">Approve</button>
+                                    <button class="btn btn-sm btn-secondary">Review</button>
+                                    <button class="btn btn-sm btn-danger">Reject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Festivals Tab -->
+                    <div class="tab-content" id="festivals-tab">
+                        <div class="tab-header">
+                            <h3>Festival Theme Manager</h3>
+                            <button class="btn btn-primary" id="add-festival-btn">
+                                <i data-lucide="plus"></i>
+                                <span>Add Festival</span>
+                            </button>
+                        </div>
+                        <div class="festivals-grid" id="festivals-grid">
+                            <!-- Festivals will be populated by JavaScript -->
+                        </div>
+                    </div>
+
+                    <!-- Smart Offers Tab -->
+                    <div class="tab-content" id="offers-tab">
+                        <div class="tab-header">
+                            <h3>Smart Offer Manager</h3>
+                            <button class="btn btn-primary" id="add-offer-btn">
+                                <i data-lucide="plus"></i>
+                                <span>Add Offer</span>
+                            </button>
+                        </div>
+                        <div class="offers-grid" id="offers-grid">
+                            <!-- Offers will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <button class="nav-btn active" data-page="dashboard">
+            <i data-lucide="home"></i>
+            <span>Home</span>
+        </button>
+        <button class="nav-btn" data-page="group">
+            <i data-lucide="users"></i>
+            <span>Groups</span>
+        </button>
+        <button class="nav-btn" data-page="suppliers">
+            <i data-lucide="package"></i>
+            <span>Suppliers</span>
+        </button>
+        <button class="nav-btn" data-page="rewards">
+            <i data-lucide="gift"></i>
+            <span>Rewards</span>
+        </button>
+        <button class="nav-btn" data-page="insights">
+            <i data-lucide="trending-up"></i>
+            <span>Insights</span>
+        </button>
+        <button class="nav-btn" data-page="admin">
+            <i data-lucide="settings"></i>
+            <span>Admin</span>
+        </button>
+    </nav>
+
+    <!-- Modals -->
+    <!-- Smart Offer Modal -->
+    <div class="modal-overlay" id="offer-modal-overlay">
+        <div class="modal offer-modal">
+            <div class="modal-header">
+                <button class="modal-close" id="close-offer-modal">
+                    <i data-lucide="x"></i>
+                </button>
+                <div class="offer-icon">
+                    <i data-lucide="gift"></i>
+                </div>
+                <h2 id="offer-title">Welcome to BazAIr! 🎉</h2>
+                <p id="offer-message">Get started with your first order and save big!</p>
+            </div>
+            <div class="modal-content">
+                <div class="reward-details">
+                    <div class="reward-value" id="reward-value">50% OFF</div>
+                    <p class="reward-validity">Valid for 30 days from redemption</p>
+                    <div class="coupon-code">
+                        <p>Coupon Code</p>
+                        <div class="code-display">
+                            <span id="coupon-code">WELCOME50</span>
+                            <button class="copy-btn" id="copy-coupon">
+                                <i data-lucide="copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-actions">
+                    <button class="btn btn-primary" id="claim-reward-btn">
+                        <i data-lucide="gift"></i>
+                        <span>Claim Reward</span>
+                    </button>
+                    <button class="btn btn-secondary" id="dismiss-offer-btn">Later</button>
+                </div>
+                <p class="terms">* Terms and conditions apply. Offer cannot be combined with other promotions.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Festival Modal -->
+    <div class="modal-overlay" id="festival-modal-overlay">
+        <div class="modal festival-modal">
+            <div class="modal-header">
+                <div class="header-content">
+                    <div class="header-icon">
+                        <i data-lucide="calendar"></i>
+                    </div>
+                    <div>
+                        <h2>Add New Festival</h2>
+                        <p>Create a themed experience for your users</p>
+                    </div>
+                </div>
+                <button class="modal-close" id="close-festival-modal">
+                    <i data-lucide="x"></i>
+                </button>
+            </div>
+            <div class="modal-content">
+                <form id="festival-form">
+                    <div class="form-section">
+                        <h3>Basic Information</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="festival-name">Festival Name *</label>
+                                <input type="text" id="festival-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="festival-date">Festival Date *</label>
+                                <input type="date" id="festival-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="festival-end-date">End Date (Optional)</label>
+                                <input type="date" id="festival-end-date">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Banner Settings</h3>
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label for="banner-text">Banner Text *</label>
+                                <input type="text" id="banner-text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Emoji</label>
+                                <div class="emoji-selector">
+                                    <button type="button" class="emoji-btn active" data-emoji="🎉">🎉</button>
+                                    <button type="button" class="emoji-btn" data-emoji="🎊">🎊</button>
+                                    <button type="button" class="emoji-btn" data-emoji="🇮🇳">🇮🇳</button>
+                                    <button type="button" class="emoji-btn" data-emoji="🌾">🌾</button>
+                                    <button type="button" class="emoji-btn" data-emoji="🪔">🪔</button>
+                                    <button type="button" class="emoji-btn" data-emoji="👫">👫</button>
+                                </div>
+                            </div>
+                            <div class="form-group full-width">
+                                <label for="banner-subtext">Subtext (Optional)</label>
+                                <input type="text" id="banner-subtext">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>Theme Colors</h3>
+                        <div class="color-presets">
+                            <button type="button" class="preset-btn active" data-preset="independence">Independence Day</button>
+                            <button type="button" class="preset-btn" data-preset="pongal">Pongal</button>
+                            <button type="button" class="preset-btn" data-preset="diwali">Diwali</button>
+                            <button type="button" class="preset-btn" data-preset="friendship">Friendship</button>
+                        </div>
+                        <div class="color-preview" id="color-preview">
+                            <span class="preview-emoji">🎉</span>
+                            <span class="preview-text">Festival Name</span>
+                        </div>
+                    </div>
+
+                    <div class="modal-actions">
+                        <button type="button" class="btn btn-secondary" id="cancel-festival">Cancel</button>
+                        <button type="submit" class="btn btn-primary">
+                            <i data-lucide="save"></i>
+                            <span>Create Festival</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toast-container"></div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay" style="display: none;">
+        <div class="loading-spinner">
+            <div class="spinner"></div>
+            <p id="loading-text">Loading...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/app.js"></script>
+</body>
 </html>
