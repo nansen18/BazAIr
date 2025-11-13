@@ -132,6 +132,12 @@
 }
 
 /* Stats Grid */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
 .stat-card {
     background: white;
     border-radius: var(--border-radius-xl);
@@ -139,10 +145,6 @@
     box-shadow: var(--shadow-md);
     border: 1px solid var(--gray-100);
     text-align: center;
-    min-height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
 .stat-icon {
@@ -387,6 +389,13 @@
 }
 
 /* Group Orders */
+.group-finder, .supplier-finder, .insights-analyzer {
+    text-align: center;
+}
+
+.finder-content, .analyzer-content {
+    margin-bottom: 1rem;
+}
 
 .finder-icon, .analyzer-icon {
     background-color: rgba(255, 163, 81, 0.1);
@@ -402,11 +411,6 @@
     color: var(--accent-color);
 }
 
-.finder-content, .analyzer-content {
-    text-align: center;
-    padding: 1rem;
-}
-
 .finder-content h3, .analyzer-content h3 {
     font-weight: 600;
     color: var(--primary-color);
@@ -416,8 +420,6 @@
 .finder-content p, .analyzer-content p {
     color: var(--gray-600);
     font-size: 0.875rem;
-    max-width: 600px;
-    margin: 0 auto;
 }
 
 .group-info {
@@ -443,9 +445,6 @@
     flex-direction: column;
     gap: 0.75rem;
     margin-bottom: 1rem;
-    background-color: var(--gray-50);
-    padding: 1rem;
-    border-radius: var(--border-radius-lg);
 }
 
 .cost-item {
@@ -474,7 +473,6 @@
 .group-actions {
     display: flex;
     gap: 0.75rem;
-    margin-top: 1rem;
 }
 
 .group-actions .btn {
@@ -541,6 +539,16 @@
 }
 
 /* Suppliers */
+.filter-bar {
+    padding: 1rem;
+}
+
+.filter-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+}
 
 .filter-header i {
     width: 1rem;
@@ -553,7 +561,24 @@
     color: var(--primary-color);
 }
 
-.filter-item select, .flex.flex-col select {
+.filter-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+}
+
+.filter-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.filter-item label {
+    font-size: 0.75rem;
+    color: var(--gray-600);
+    margin-bottom: 0.25rem;
+}
+
+.filter-item select {
     font-size: 0.875rem;
     border: 1px solid var(--gray-200);
     border-radius: var(--border-radius-lg);
@@ -562,9 +587,15 @@
     color: var(--gray-700);
 }
 
-.filter-item select:focus, .flex.flex-col select:focus {
+.filter-item select:focus {
     outline: none;
     border-color: var(--secondary-color);
+}
+
+.suppliers-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
 }
 
 .supplier-card {
@@ -574,9 +605,6 @@
     border: 1px solid var(--gray-100);
     padding: 1.5rem;
     transition: box-shadow 0.2s ease;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .supplier-card:hover {
@@ -668,7 +696,6 @@
 
 .supplier-specialties {
     margin-bottom: 1rem;
-    flex-grow: 1;
 }
 
 .supplier-specialties .label {
@@ -689,7 +716,6 @@
     color: var(--primary-color);
     font-size: 0.75rem;
     border-radius: 9999px;
-    white-space: nowrap;
 }
 
 /* Rewards */
@@ -946,6 +972,17 @@
 }
 
 /* Insights */
+.savings-card {
+    background: linear-gradient(to right, #10B981, #059669);
+    color: white;
+}
+
+.savings-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
 
 .savings-info {
     display: flex;
@@ -1012,15 +1049,18 @@
     font-size: 0.875rem;
 }
 
+.insights-results {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
 .insight-card {
     background: white;
     border-radius: var(--border-radius-2xl);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--gray-100);
     padding: 1.5rem;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .insight-card.high-wastage {
@@ -1179,6 +1219,13 @@
 }
 
 /* Admin */
+.admin-tabs {
+    display: flex;
+    border-bottom: 1px solid var(--gray-200);
+    background: white;
+    border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
+    overflow-x: auto;
+}
 
 .tab-btn {
     display: flex;
@@ -1209,6 +1256,15 @@
 .tab-btn i {
     width: 1rem;
     height: 1rem;
+}
+
+.admin-content {
+    background: white;
+    border-radius: 0 0 var(--border-radius-xl) var(--border-radius-xl);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-100);
+    border-top: none;
 }
 
 .tab-content {
@@ -1284,15 +1340,18 @@
     flex: 1;
 }
 
+.festivals-grid, .offers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1rem;
+}
+
 .festival-card, .offer-card {
     background: white;
     border-radius: var(--border-radius-xl);
     box-shadow: var(--shadow-md);
     border: 1px solid var(--gray-100);
     overflow: hidden;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
 .festival-preview {
@@ -1324,9 +1383,6 @@
 
 .festival-details, .offer-details {
     padding: 1rem;
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
 }
 
 .festival-status, .offer-status {
@@ -1384,8 +1440,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: auto;
-    padding-top: 1rem;
 }
 
 .action-group {
@@ -1437,19 +1491,27 @@
 }
 
 @media (max-width: 640px) {
-    .card {
-        padding: 1rem;
+    .festivals-grid, .offers-grid {
+        grid-template-columns: 1fr;
     }
     
-    .supplier-card {
-        padding: 1rem;
+    .admin-tabs {
+        overflow-x: auto;
     }
     
-    .insight-card {
-        padding: 1rem;
+    .tab-btn {
+        flex-shrink: 0;
     }
     
-    .festival-card, .offer-card {
-        margin-bottom: 1rem;
+    .filter-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .insight-stats {
+        grid-template-columns: 1fr;
     }
 }

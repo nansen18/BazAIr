@@ -88,7 +88,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 pb-20 md:pb-8 pt-6">
+    <main class="main-content">
         <!-- Festival Banner (hidden by default) -->
         <div class="festival-banner" id="festival-banner" style="display: none;">
             <div class="festival-content">
@@ -108,7 +108,7 @@
         </div>
 
         <!-- Page Content Container -->
-        <div class="flex flex-col gap-6" id="page-container">
+        <div class="page-container" id="page-container">
             <!-- Dashboard Page -->
             <div class="page" id="dashboard-page">
                 <div class="page-header">
@@ -139,7 +139,7 @@
                 </div>
 
                 <!-- Quick Stats -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+                <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i data-lucide="dollar-sign"></i>
@@ -173,7 +173,7 @@
                 </div>
 
                 <!-- Smart Cart Card -->
-                <div class="card smart-cart-card w-full" id="smart-cart-card">
+                <div class="card smart-cart-card" id="smart-cart-card">
                     <div class="card-header">
                         <div class="header-left">
                             <div class="header-icon">
@@ -220,7 +220,7 @@
                 </div>
 
                 <!-- Recent Orders -->
-                <div class="card w-full max-w-4xl mx-auto">
+                <div class="card recent-orders-card">
                     <div class="card-header">
                         <h3>Recent Orders</h3>
                         <button class="text-btn">View All</button>
@@ -275,7 +275,7 @@
                 </div>
 
                 <!-- Group Finder -->
-                <div class="card w-full" id="group-finder">
+                <div class="card group-finder" id="group-finder">
                     <div class="finder-content">
                         <div class="finder-icon">
                             <i data-lucide="sparkles"></i>
@@ -287,7 +287,7 @@
                 </div>
 
                 <!-- Group Order Card (hidden initially) -->
-                <div class="card w-full" id="group-order-card" style="display: none;">
+                <div class="card group-order-card" id="group-order-card" style="display: none;">
                     <div class="card-header">
                         <div class="header-left">
                             <div class="header-icon">
@@ -331,7 +331,7 @@
                 </div>
 
                 <!-- Group Members -->
-                <div class="card w-full" id="group-members" style="display: none;">
+                <div class="card group-members" id="group-members" style="display: none;">
                     <h3>Group Members</h3>
                     <div class="members-list">
                         <div class="member-item">
@@ -382,7 +382,7 @@
                 </div>
 
                 <!-- Supplier Finder -->
-                <div class="card w-full" id="supplier-finder">
+                <div class="card supplier-finder" id="supplier-finder">
                     <div class="finder-content">
                         <div class="finder-icon">
                             <i data-lucide="sparkles"></i>
@@ -394,14 +394,13 @@
                 </div>
 
                 <!-- Filter Bar (hidden initially) -->
-                <div class="card w-full max-w-4xl mx-auto" id="filter-bar" style="display: none;">
+                <div class="card filter-bar" id="filter-bar" style="display: none;">
                     <div class="filter-header">
                         <i data-lucide="filter"></i>
                         <span>Filters</span>
                     </div>
-                    <div class="filter-grid mt-4">
-                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                        <div class="flex flex-col">
+                    <div class="filter-grid">
+                        <div class="filter-item">
                             <label>Price Range</label>
                             <select id="price-filter">
                                 <option value="all">All</option>
@@ -410,7 +409,7 @@
                                 <option value="high">High</option>
                             </select>
                         </div>
-                        <div class="flex flex-col">
+                        <div class="filter-item">
                             <label>Delivery</label>
                             <select id="delivery-filter">
                                 <option value="all">All</option>
@@ -418,7 +417,7 @@
                                 <option value="Next Day">Next Day</option>
                             </select>
                         </div>
-                        <div class="flex flex-col">
+                        <div class="filter-item">
                             <label>Rating</label>
                             <select id="rating-filter">
                                 <option value="all">All</option>
@@ -431,7 +430,7 @@
                 </div>
 
                 <!-- Suppliers List -->
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto" id="suppliers-list">
+                <div class="suppliers-list" id="suppliers-list">
                     <!-- Suppliers will be populated by JavaScript -->
                 </div>
             </div>
@@ -447,7 +446,7 @@
                 </div>
 
                 <!-- Rewards Summary -->
-                <div class="card w-full max-w-4xl mx-auto">
+                <div class="card rewards-summary">
                     <div class="summary-content">
                         <div class="summary-info">
                             <div class="summary-icon">
@@ -469,7 +468,7 @@
                 </div>
 
                 <!-- Active Rewards -->
-                <div class="card w-full max-w-4xl mx-auto" id="active-rewards-section" style="display: none;">
+                <div class="rewards-section" id="active-rewards-section" style="display: none;">
                     <div class="section-header">
                         <i data-lucide="gift"></i>
                         <h3>Active Rewards</h3>
@@ -481,7 +480,7 @@
                 </div>
 
                 <!-- No Rewards State -->
-                <div class="card w-full max-w-4xl mx-auto" id="no-rewards">
+                <div class="card no-rewards" id="no-rewards">
                     <div class="no-rewards-content">
                         <div class="no-rewards-icon">
                             <i data-lucide="gift"></i>
@@ -503,7 +502,7 @@
                 </div>
 
                 <!-- Insights Analyzer -->
-                <div class="card w-full" id="insights-analyzer">
+                <div class="card insights-analyzer" id="insights-analyzer">
                     <div class="analyzer-content">
                         <div class="analyzer-icon">
                             <i data-lucide="sparkles"></i>
@@ -515,7 +514,7 @@
                 </div>
 
                 <!-- Savings Card (hidden initially) -->
-                <div class="card w-full max-w-4xl mx-auto" id="savings-card" style="display: none;">
+                <div class="card savings-card" id="savings-card" style="display: none;">
                     <div class="savings-content">
                         <div class="savings-info">
                             <div class="savings-icon">
@@ -540,7 +539,7 @@
                 </div>
 
                 <!-- Insights Results -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto" id="insights-results" style="display: none;">
+                <div class="insights-results" id="insights-results" style="display: none;">
                     <!-- Results will be populated by JavaScript -->
                 </div>
             </div>
@@ -556,7 +555,7 @@
                 </div>
 
                 <!-- Admin Tabs -->
-                <div class="flex border-b border-gray-200 bg-white rounded-t-xl overflow-x-auto max-w-6xl mx-auto">
+                <div class="admin-tabs">
                     <button class="tab-btn active" data-tab="vendors">
                         <i data-lucide="check-circle"></i>
                         <span>Vendors</span>
@@ -584,7 +583,7 @@
                 </div>
 
                 <!-- Admin Content -->
-                <div class="bg-white rounded-b-xl p-6 shadow-lg border border-gray-100 border-t-0 max-w-6xl mx-auto">
+                <div class="admin-content">
                     <!-- Vendors Tab -->
                     <div class="tab-content active" id="vendors-tab">
                         <div class="tab-header">
@@ -619,7 +618,7 @@
                                 <span>Add Festival</span>
                             </button>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="festivals-grid">
+                        <div class="festivals-grid" id="festivals-grid">
                             <!-- Festivals will be populated by JavaScript -->
                         </div>
                     </div>
@@ -633,7 +632,7 @@
                                 <span>Add Offer</span>
                             </button>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="offers-grid">
+                        <div class="offers-grid" id="offers-grid">
                             <!-- Offers will be populated by JavaScript -->
                         </div>
                     </div>
@@ -643,8 +642,7 @@
     </main>
 
     <!-- Bottom Navigation -->
-    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-40 md:hidden">
-        <div class="flex justify-around p-2 max-w-md mx-auto">
+    <nav class="bottom-nav">
         <button class="nav-btn active" data-page="dashboard">
             <i data-lucide="home"></i>
             <span>Home</span>
@@ -669,7 +667,6 @@
             <i data-lucide="settings"></i>
             <span>Admin</span>
         </button>
-        </div>
     </nav>
 
     <!-- Modals -->

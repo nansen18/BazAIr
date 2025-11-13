@@ -57,6 +57,22 @@ p {
 }
 
 /* Layout */
+.main-content {
+    padding-bottom: 5rem;
+    max-width: 28rem;
+    margin: 0 auto;
+    width: 100%;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: 1.5rem;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
 .page {
     display: flex;
     flex-direction: column;
@@ -280,16 +296,14 @@ p {
     position: sticky;
     top: 0;
     z-index: 50;
-    width: 100%;
 }
 
 .nav-content {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1600px;
+    max-width: 28rem;
     margin: 0 auto;
-    width: 100%;
 }
 
 .nav-logo {
@@ -330,7 +344,7 @@ p {
 .nav-actions {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 1rem;
 }
 
 .nav-item {
@@ -368,19 +382,13 @@ p {
     right: 0;
     top: 100%;
     margin-top: 0.5rem;
-    width: 18rem;
+    width: 20rem;
     background: white;
     border-radius: var(--border-radius-lg);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--gray-200);
     z-index: 50;
     display: none;
-}
-
-@media (min-width: 768px) {
-    .dropdown {
-        width: 20rem;
-    }
 }
 
 .dropdown.show {
@@ -476,18 +484,24 @@ p {
     color: var(--gray-500);
 }
 
+/* Bottom Navigation */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    border-top: 1px solid var(--gray-200);
+    box-shadow: var(--shadow-lg);
+    z-index: 40;
+}
+
 .bottom-nav {
     display: flex;
     justify-content: space-around;
     padding: 0.5rem;
-    max-width: 100%;
+    max-width: 28rem;
     margin: 0 auto;
-}
-
-@media (min-width: 768px) {
-    .bottom-nav {
-        max-width: 28rem;
-    }
 }
 
 .nav-btn {
@@ -517,13 +531,17 @@ p {
     margin-bottom: 0.25rem;
 }
 
-/* Hide bottom nav on desktop */
-@media (min-width: 768px) {
-    .fixed.bottom-0 { display: none; }
-}
-
 /* Responsive Design */
 @media (max-width: 640px) {
+    .main-content {
+        padding-left: 0.75rem;
+        padding-right: 0.75rem;
+    }
+    
+    .card {
+        padding: 1rem;
+    }
+    
     .dropdown {
         width: calc(100vw - 2rem);
         right: -1rem;
@@ -531,10 +549,6 @@ p {
     
     .nav-content {
         padding: 0;
-    }
-    
-    .nav-actions {
-        gap: 0.5rem;
     }
 }
 
