@@ -15,134 +15,175 @@ let appState = {
 
 // Initialize app
 document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
+    try {
+        initializeApp();
+    } catch (error) {
+        console.error('Failed to initialize app:', error);
+        showFallbackContent();
+    }
 });
 
 function initializeApp() {
-    // Initialize Lucide icons
-    initializeIcons();
-    
-    // Setup navigation
-    setupNavigation();
-    
-    // Setup event listeners
-    setupEventListeners();
-    
-    // Check for smart offers on app load
-    checkForSmartOffers();
-    
-    // Initialize current page
-    showPage('dashboard');
-    
-    // Render initial data
-    renderSmartCart(appState.cartItems, [
-        'Weather is sunny - increase tomato quantities by 20%',
-        'Weekend approaching - stock extra onions',
-        'Festival season - consider premium masala pack'
-    ]);
-    
-    console.log('BazAIr app initialized successfully!');
+    try {
+        // Initialize Lucide icons
+        initializeIcons();
+        
+        // Setup navigation
+        setupNavigation();
+        
+        // Setup event listeners
+        setupEventListeners();
+        
+        // Initialize current page
+        showPage('dashboard');
+        
+        // Render initial data
+        renderSmartCart(appState.cartItems, [
+            'Weather is sunny - increase tomato quantities by 20%',
+            'Weekend approaching - stock extra onions',
+            'Festival season - consider premium masala pack'
+        ]);
+        
+        // Don't auto-show smart offers on load
+        // checkForSmartOffers();
+        
+        console.log('BazAIr app initialized successfully!');
+    } catch (error) {
+        console.error('Error during app initialization:', error);
+        showFallbackContent();
+    }
+}
+
+function showFallbackContent() {
+    const pageContainer = document.getElementById('page-container');
+    if (pageContainer) {
+        pageContainer.innerHTML = `
+            <div class="card w-full max-w-4xl mx-auto text-center">
+                <div class="p-8">
+                    <div class="mb-4">
+                        <i data-lucide="alert-circle" class="w-16 h-16 mx-auto text-yellow-500"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Loading BazAIr...</h2>
+                    <p class="text-gray-600 mb-6">Please wait while we set up your dashboard.</p>
+                    <button class="btn btn-primary" onclick="location.reload()">
+                        <i data-lucide="refresh-cw"></i>
+                        <span>Retry</span>
+                    </button>
+                </div>
+            </div>
+        `;
+        initializeIcons();
+    }
 }
 
 // Navigation
 function setupNavigation() {
-    // Bottom navigation
-    const navButtons = document.querySelectorAll('.nav-btn');
-    navButtons.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const page = btn.getAttribute('data-page');
-            showPage(page);
+    try {
+        // Bottom navigation
+        const navButtons = document.querySelectorAll('.nav-btn');
+        navButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const page = btn.getAttribute('data-page');
+                showPage(page);
+            });
         });
-    });
-    
-    // Top navigation dropdowns
-    const notificationsBtn = document.getElementById('notifications-btn');
-    const profileBtn = document.getElementById('profile-btn');
-    const notificationsDropdown = document.getElementById('notifications-dropdown');
-    const profileDropdown = document.getElementById('profile-dropdown');
-    
-    if (notificationsBtn && notificationsDropdown) {
-        notificationsBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            notificationsDropdown.classList.toggle('show');
-            profileDropdown.classList.remove('show');
+        
+        // Top navigation dropdowns
+        const notificationsBtn = document.getElementById('notifications-btn');
+        const profileBtn = document.getElementById('profile-btn');
+        const notificationsDropdown = document.getElementById('notifications-dropdown');
+        const profileDropdown = document.getElementById('profile-dropdown');
+        
+        if (notificationsBtn && notificationsDropdown) {
+            notificationsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                notificationsDropdown.classList.toggle('show');
+                if (profileDropdown) profileDropdown.classList.remove('show');
+            });
+        }
+        
+        if (profileBtn && profileDropdown) {
+            profileBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                profileDropdown.classList.toggle('show');
+                if (notificationsDropdown) notificationsDropdown.classList.remove('show');
+            });
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', () => {
+            if (notificationsDropdown) notificationsDropdown.classList.remove('show');
+            if (profileDropdown) profileDropdown.classList.remove('show');
         });
+    } catch (error) {
+        console.error('Error setting up navigation:', error);
     }
-    
-    if (profileBtn && profileDropdown) {
-        profileBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            profileDropdown.classList.toggle('show');
-            notificationsDropdown.classList.remove('show');
-        });
-    }
-    
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', () => {
-        if (notificationsDropdown) notificationsDropdown.classList.remove('show');
-        if (profileDropdown) profileDropdown.classList.remove('show');
-    });
 }
 
 function showPage(pageId) {
-    // Update navigation
-    const navButtons = document.querySelectorAll('.nav-btn');
-    navButtons.forEach(btn => {
-        btn.classList.toggle('active', btn.getAttribute('data-page') === pageId);
-    });
-    
-    // Show/hide pages
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => {
-        page.style.display = page.id === `${pageId}-page` ? 'block' : 'none';
-    });
-    
-    currentPage = pageId;
-    
-    // Page-specific initialization
-    switch (pageId) {
-        case 'suppliers':
-            // Reset suppliers page state
-            const supplierFinder = document.getElementById('supplier-finder');
-            const filterBar = document.getElementById('filter-bar');
-            const suppliersList = document.getElementById('suppliers-list');
-            
-            if (supplierFinder) supplierFinder.style.display = 'block';
-            if (filterBar) filterBar.style.display = 'none';
-            if (suppliersList) suppliersList.innerHTML = '';
-            break;
-            
-        case 'group':
-            // Reset group orders page state
-            const groupFinder = document.getElementById('group-finder');
-            const groupOrderCard = document.getElementById('group-order-card');
-            const groupMembers = document.getElementById('group-members');
-            
-            if (groupFinder) groupFinder.style.display = 'block';
-            if (groupOrderCard) groupOrderCard.style.display = 'none';
-            if (groupMembers) groupMembers.style.display = 'none';
-            break;
-            
-        case 'insights':
-            // Reset insights page state
-            const insightsAnalyzer = document.getElementById('insights-analyzer');
-            const savingsCard = document.getElementById('savings-card');
-            const insightsResults = document.getElementById('insights-results');
-            
-            if (insightsAnalyzer) insightsAnalyzer.style.display = 'block';
-            if (savingsCard) savingsCard.style.display = 'none';
-            if (insightsResults) insightsResults.style.display = 'none';
-            break;
-            
-        case 'admin':
-            // Show vendors tab by default
-            showAdminTab('vendors');
-            break;
-            
-        case 'rewards':
-            // Render rewards
-            renderRewards(appState.rewards);
-            break;
+    try {
+        // Update navigation
+        const navButtons = document.querySelectorAll('.nav-btn');
+        navButtons.forEach(btn => {
+            btn.classList.toggle('active', btn.getAttribute('data-page') === pageId);
+        });
+        
+        // Show/hide pages
+        const pages = document.querySelectorAll('.page');
+        pages.forEach(page => {
+            page.style.display = page.id === `${pageId}-page` ? 'block' : 'none';
+        });
+        
+        currentPage = pageId;
+        
+        // Page-specific initialization
+        switch (pageId) {
+            case 'suppliers':
+                // Reset suppliers page state
+                const supplierFinder = document.getElementById('supplier-finder');
+                const filterBar = document.getElementById('filter-bar');
+                const suppliersList = document.getElementById('suppliers-list');
+                
+                if (supplierFinder) supplierFinder.style.display = 'block';
+                if (filterBar) filterBar.style.display = 'none';
+                if (suppliersList) suppliersList.innerHTML = '';
+                break;
+                
+            case 'group':
+                // Reset group orders page state
+                const groupFinder = document.getElementById('group-finder');
+                const groupOrderCard = document.getElementById('group-order-card');
+                const groupMembers = document.getElementById('group-members');
+                
+                if (groupFinder) groupFinder.style.display = 'block';
+                if (groupOrderCard) groupOrderCard.style.display = 'none';
+                if (groupMembers) groupMembers.style.display = 'none';
+                break;
+                
+            case 'insights':
+                // Reset insights page state
+                const insightsAnalyzer = document.getElementById('insights-analyzer');
+                const savingsCard = document.getElementById('savings-card');
+                const insightsResults = document.getElementById('insights-results');
+                
+                if (insightsAnalyzer) insightsAnalyzer.style.display = 'block';
+                if (savingsCard) savingsCard.style.display = 'none';
+                if (insightsResults) insightsResults.style.display = 'none';
+                break;
+                
+            case 'admin':
+                // Show vendors tab by default
+                showAdminTab('vendors');
+                break;
+                
+            case 'rewards':
+                // Render rewards
+                renderRewards(appState.rewards);
+                break;
+        }
+    } catch (error) {
+        console.error('Error showing page:', error);
+        showFallbackContent();
     }
 }
 

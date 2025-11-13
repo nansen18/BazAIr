@@ -139,6 +139,10 @@
     box-shadow: var(--shadow-md);
     border: 1px solid var(--gray-100);
     text-align: center;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .stat-icon {
@@ -398,6 +402,11 @@
     color: var(--accent-color);
 }
 
+.finder-content, .analyzer-content {
+    text-align: center;
+    padding: 1rem;
+}
+
 .finder-content h3, .analyzer-content h3 {
     font-weight: 600;
     color: var(--primary-color);
@@ -407,6 +416,8 @@
 .finder-content p, .analyzer-content p {
     color: var(--gray-600);
     font-size: 0.875rem;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
 .group-info {
@@ -432,6 +443,9 @@
     flex-direction: column;
     gap: 0.75rem;
     margin-bottom: 1rem;
+    background-color: var(--gray-50);
+    padding: 1rem;
+    border-radius: var(--border-radius-lg);
 }
 
 .cost-item {
@@ -460,6 +474,7 @@
 .group-actions {
     display: flex;
     gap: 0.75rem;
+    margin-top: 1rem;
 }
 
 .group-actions .btn {
@@ -559,6 +574,9 @@
     border: 1px solid var(--gray-100);
     padding: 1.5rem;
     transition: box-shadow 0.2s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .supplier-card:hover {
@@ -650,6 +668,7 @@
 
 .supplier-specialties {
     margin-bottom: 1rem;
+    flex-grow: 1;
 }
 
 .supplier-specialties .label {
@@ -670,6 +689,7 @@
     color: var(--primary-color);
     font-size: 0.75rem;
     border-radius: 9999px;
+    white-space: nowrap;
 }
 
 /* Rewards */
@@ -998,6 +1018,9 @@
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--gray-100);
     padding: 1.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .insight-card.high-wastage {
@@ -1267,6 +1290,9 @@
     box-shadow: var(--shadow-md);
     border: 1px solid var(--gray-100);
     overflow: hidden;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .festival-preview {
@@ -1298,6 +1324,9 @@
 
 .festival-details, .offer-details {
     padding: 1rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .festival-status, .offer-status {
@@ -1355,6 +1384,8 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-top: auto;
+    padding-top: 1rem;
 }
 
 .action-group {
@@ -1408,5 +1439,17 @@
 @media (max-width: 640px) {
     .card {
         padding: 1rem;
+    }
+    
+    .supplier-card {
+        padding: 1rem;
+    }
+    
+    .insight-card {
+        padding: 1rem;
+    }
+    
+    .festival-card, .offer-card {
+        margin-bottom: 1rem;
     }
 }

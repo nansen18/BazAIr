@@ -2,124 +2,132 @@
 
 // Smart Cart Component
 function renderSmartCart(cartItems, suggestions = []) {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalAmount = document.getElementById('cart-total-amount');
-    const suggestionsList = document.getElementById('ai-suggestions-list');
-    
-    if (!cartItemsContainer) return;
-    
-    // Clear existing items
-    cartItemsContainer.innerHTML = '';
-    
-    // Calculate total
-    let total = 0;
-    
-    // Render cart items
-    cartItems.forEach(item => {
-        total += item.totalPrice;
+    try {
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalAmount = document.getElementById('cart-total-amount');
+        const suggestionsList = document.getElementById('ai-suggestions-list');
         
-        const cartItem = document.createElement('div');
-        cartItem.className = 'cart-item';
-        cartItem.innerHTML = `
-            <div class="cart-item-info">
-                <span class="cart-item-emoji">${item.emoji}</span>
-                <div class="cart-item-details">
-                    <span class="cart-item-name">${item.name}</span>
-                    <span class="cart-item-quantity">${item.quantity}${item.unit}</span>
+        if (!cartItemsContainer) return;
+        
+        // Clear existing items
+        cartItemsContainer.innerHTML = '';
+        
+        // Calculate total
+        let total = 0;
+        
+        // Render cart items
+        cartItems.forEach(item => {
+            total += item.totalPrice;
+            
+            const cartItem = document.createElement('div');
+            cartItem.className = 'cart-item';
+            cartItem.innerHTML = `
+                <div class="cart-item-info">
+                    <span class="cart-item-emoji">${item.emoji}</span>
+                    <div class="cart-item-details">
+                        <span class="cart-item-name">${item.name}</span>
+                        <span class="cart-item-quantity">${item.quantity}${item.unit}</span>
+                    </div>
                 </div>
-            </div>
-            <span class="cart-item-price">${formatCurrency(item.totalPrice)}</span>
-        `;
-        
-        cartItemsContainer.appendChild(cartItem);
-    });
-    
-    // Update total
-    if (totalAmount) {
-        totalAmount.textContent = formatCurrency(total);
-    }
-    
-    // Update suggestions
-    if (suggestionsList && suggestions.length > 0) {
-        suggestionsList.innerHTML = '';
-        suggestions.forEach(suggestion => {
-            const li = document.createElement('li');
-            li.textContent = suggestion;
-            suggestionsList.appendChild(li);
+                <span class="cart-item-price">${formatCurrency(item.totalPrice)}</span>
+            `;
+            
+            cartItemsContainer.appendChild(cartItem);
         });
+        
+        // Update total
+        if (totalAmount) {
+            totalAmount.textContent = formatCurrency(total);
+        }
+        
+        // Update suggestions
+        if (suggestionsList && suggestions.length > 0) {
+            suggestionsList.innerHTML = '';
+            suggestions.forEach(suggestion => {
+                const li = document.createElement('li');
+                li.textContent = suggestion;
+                suggestionsList.appendChild(li);
+            });
+        }
+    } catch (error) {
+        console.error('Error rendering smart cart:', error);
     }
 }
 
 // Suppliers List Component
 function renderSuppliers(suppliers) {
-    const suppliersList = document.getElementById('suppliers-list');
-    if (!suppliersList) return;
-    
-    suppliersList.innerHTML = '';
-    
-    suppliers.forEach(supplier => {
-        const supplierCard = document.createElement('div');
-        supplierCard.className = 'supplier-card w-full';
+    try {
+        const suppliersList = document.getElementById('suppliers-list');
+        if (!suppliersList) return;
         
-        // Generate stars
-        let starsHtml = '';
-        for (let i = 1; i <= 5; i++) {
-            starsHtml += `<i data-lucide="star" class="star ${i <= supplier.rating ? 'filled' : ''}"></i>`;
-        }
+        suppliersList.innerHTML = '';
         
-        // Generate specialties
-        let specialtiesHtml = '';
-        supplier.speciality.forEach(specialty => {
-            specialtiesHtml += `<span class="specialty-tag">${specialty}</span>`;
+        suppliers.forEach(supplier => {
+            const supplierCard = document.createElement('div');
+            supplierCard.className = 'supplier-card w-full';
+            
+            // Generate stars
+            let starsHtml = '';
+            for (let i = 1; i <= 5; i++) {
+                starsHtml += `<i data-lucide="star" class="star ${i <= supplier.rating ? 'filled' : ''}"></i>`;
+            }
+            
+            // Generate specialties
+            let specialtiesHtml = '';
+            supplier.speciality.forEach(specialty => {
+                specialtiesHtml += `<span class="specialty-tag">${specialty}</span>`;
+            });
+            
+            supplierCard.innerHTML = `
+                <div class="supplier-header">
+                    <div class="supplier-info">
+                        <h3>${supplier.name}</h3>
+                        <div class="supplier-rating">
+                            ${starsHtml}
+                            <span>(${supplier.rating})</span>
+                        </div>
+                        <div class="supplier-location">
+                            <i data-lucide="map-pin"></i>
+                            <span>${supplier.location}</span>
+                        </div>
+                    </div>
+                    <div class="supplier-match">
+                        <div class="match-badge">${Math.round(supplier.rating * 20)}% match</div>
+                        <div class="supplier-eta">${supplier.eta}</div>
+                    </div>
+                </div>
+                
+                <div class="supplier-details">
+                    <div class="supplier-detail">
+                        <i data-lucide="clock"></i>
+                        <span>${supplier.deliveryTime}</span>
+                    </div>
+                    <div class="supplier-detail">
+                        <i data-lucide="map-pin"></i>
+                        <span class="capitalize">${supplier.priceRange} price</span>
+                    </div>
+                </div>
+                
+                <div class="supplier-specialties">
+                    <div class="label">Specialties:</div>
+                    <div class="specialties-list">
+                        ${specialtiesHtml}
+                    </div>
+                </div>
+                
+                <button class="btn btn-primary w-full" onclick="selectSupplier('${supplier.id}')">
+                    Select Supplier
+                </button>
+            `;
+            
+            suppliersList.appendChild(supplierCard);
         });
         
-        supplierCard.innerHTML = `
-            <div class="supplier-header">
-                <div class="supplier-info">
-                    <h3>${supplier.name}</h3>
-                    <div class="supplier-rating">
-                        ${starsHtml}
-                        <span>(${supplier.rating})</span>
-                    </div>
-                    <div class="supplier-location">
-                        <i data-lucide="map-pin"></i>
-                        <span>${supplier.location}</span>
-                    </div>
-                </div>
-                <div class="supplier-match">
-                    <div class="match-badge">${Math.round(supplier.rating * 20)}% match</div>
-                    <div class="supplier-eta">${supplier.eta}</div>
-                </div>
-            </div>
-            
-            <div class="supplier-details">
-                <div class="supplier-detail">
-                    <i data-lucide="clock"></i>
-                    <span>${supplier.deliveryTime}</span>
-                </div>
-                <div class="supplier-detail">
-                    <i data-lucide="map-pin"></i>
-                    <span class="capitalize">${supplier.priceRange} price</span>
-                </div>
-            </div>
-            
-            <div class="supplier-specialties">
-                <div class="label">Specialties:</div>
-                <div class="specialties-list">
-                    ${specialtiesHtml}
-                </div>
-            </div>
-            
-            <button class="btn btn-primary w-full" onclick="selectSupplier('${supplier.id}')">
-                Select Supplier
-            </button>
-        `;
-        
-        suppliersList.appendChild(supplierCard);
-    });
-    
-    // Initialize icons
-    initializeIcons();
+        // Initialize icons
+        initializeIcons();
+    } catch (error) {
+        console.error('Error rendering suppliers:', error);
+    }
 }
 
 // Rewards Component
