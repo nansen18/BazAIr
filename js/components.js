@@ -59,7 +59,7 @@ function renderSuppliers(suppliers) {
     
     suppliers.forEach(supplier => {
         const supplierCard = document.createElement('div');
-        supplierCard.className = 'supplier-card';
+        supplierCard.className = 'supplier-card w-full';
         
         // Generate stars
         let starsHtml = '';
@@ -207,7 +207,7 @@ function renderInsights(insights) {
         const isHighWastage = wastagePercentage > 20;
         
         const insightCard = document.createElement('div');
-        insightCard.className = `insight-card ${isHighWastage ? 'high-wastage' : ''}`;
+        insightCard.className = `insight-card w-full ${isHighWastage ? 'high-wastage' : ''}`;
         insightCard.innerHTML = `
             <div class="insight-header">
                 <div class="insight-info">
@@ -273,7 +273,7 @@ function renderFestivals(festivals) {
     
     festivals.forEach(festival => {
         const festivalCard = document.createElement('div');
-        festivalCard.className = 'festival-card';
+        festivalCard.className = 'festival-card w-full';
         festivalCard.innerHTML = `
             <div class="festival-preview" style="background: linear-gradient(135deg, ${festival.theme.gradientFrom}, ${festival.theme.gradientTo})">
                 <div>
@@ -330,7 +330,7 @@ function renderSmartOffers(offers) {
     
     offers.forEach(offer => {
         const offerCard = document.createElement('div');
-        offerCard.className = 'offer-card';
+        offerCard.className = 'offer-card w-full';
         
         const triggerTypeLabels = {
             'first_login': 'First Login',

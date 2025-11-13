@@ -132,12 +132,6 @@
 }
 
 /* Stats Grid */
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-}
-
 .stat-card {
     background: white;
     border-radius: var(--border-radius-xl);
@@ -389,13 +383,6 @@
 }
 
 /* Group Orders */
-.group-finder, .supplier-finder, .insights-analyzer {
-    text-align: center;
-}
-
-.finder-content, .analyzer-content {
-    margin-bottom: 1rem;
-}
 
 .finder-icon, .analyzer-icon {
     background-color: rgba(255, 163, 81, 0.1);
@@ -539,16 +526,6 @@
 }
 
 /* Suppliers */
-.filter-bar {
-    padding: 1rem;
-}
-
-.filter-header {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-bottom: 0.75rem;
-}
 
 .filter-header i {
     width: 1rem;
@@ -561,24 +538,7 @@
     color: var(--primary-color);
 }
 
-.filter-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.75rem;
-}
-
-.filter-item {
-    display: flex;
-    flex-direction: column;
-}
-
-.filter-item label {
-    font-size: 0.75rem;
-    color: var(--gray-600);
-    margin-bottom: 0.25rem;
-}
-
-.filter-item select {
+.filter-item select, .flex.flex-col select {
     font-size: 0.875rem;
     border: 1px solid var(--gray-200);
     border-radius: var(--border-radius-lg);
@@ -587,15 +547,9 @@
     color: var(--gray-700);
 }
 
-.filter-item select:focus {
+.filter-item select:focus, .flex.flex-col select:focus {
     outline: none;
     border-color: var(--secondary-color);
-}
-
-.suppliers-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 }
 
 .supplier-card {
@@ -972,17 +926,6 @@
 }
 
 /* Insights */
-.savings-card {
-    background: linear-gradient(to right, #10B981, #059669);
-    color: white;
-}
-
-.savings-content {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 1rem;
-}
 
 .savings-info {
     display: flex;
@@ -1047,12 +990,6 @@
     border-radius: var(--border-radius-lg);
     padding: 0.75rem;
     font-size: 0.875rem;
-}
-
-.insights-results {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
 }
 
 .insight-card {
@@ -1219,13 +1156,6 @@
 }
 
 /* Admin */
-.admin-tabs {
-    display: flex;
-    border-bottom: 1px solid var(--gray-200);
-    background: white;
-    border-radius: var(--border-radius-xl) var(--border-radius-xl) 0 0;
-    overflow-x: auto;
-}
 
 .tab-btn {
     display: flex;
@@ -1256,15 +1186,6 @@
 .tab-btn i {
     width: 1rem;
     height: 1rem;
-}
-
-.admin-content {
-    background: white;
-    border-radius: 0 0 var(--border-radius-xl) var(--border-radius-xl);
-    padding: 1.5rem;
-    box-shadow: var(--shadow-lg);
-    border: 1px solid var(--gray-100);
-    border-top: none;
 }
 
 .tab-content {
@@ -1338,12 +1259,6 @@
 
 .item-actions .btn {
     flex: 1;
-}
-
-.festivals-grid, .offers-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1rem;
 }
 
 .festival-card, .offer-card {
@@ -1491,27 +1406,7 @@
 }
 
 @media (max-width: 640px) {
-    .festivals-grid, .offers-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .admin-tabs {
-        overflow-x: auto;
-    }
-    
-    .tab-btn {
-        flex-shrink: 0;
-    }
-    
-    .filter-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .stats-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .insight-stats {
-        grid-template-columns: 1fr;
+    .card {
+        padding: 1rem;
     }
 }
