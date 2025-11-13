@@ -88,7 +88,7 @@
     </nav>
 
     <!-- Main Content -->
-    <main class="w-full max-w-[1200px] mx-auto px-4 md:px-8 pb-20 md:pb-8 pt-6">
+    <main class="w-full max-w-7xl mx-auto px-4 md:px-8 lg:px-12 pb-20 md:pb-8 pt-6">
         <!-- Festival Banner (hidden by default) -->
         <div class="festival-banner" id="festival-banner" style="display: none;">
             <div class="festival-content">
@@ -139,7 +139,7 @@
                 </div>
 
                 <!-- Quick Stats -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     <div class="stat-card">
                         <div class="stat-icon">
                             <i data-lucide="dollar-sign"></i>
@@ -173,7 +173,7 @@
                 </div>
 
                 <!-- Smart Cart Card -->
-                <div class="card smart-cart-card" id="smart-cart-card">
+                <div class="card smart-cart-card w-full" id="smart-cart-card">
                     <div class="card-header">
                         <div class="header-left">
                             <div class="header-icon">
@@ -220,7 +220,7 @@
                 </div>
 
                 <!-- Recent Orders -->
-                <div class="card w-full">
+                <div class="card w-full max-w-4xl mx-auto">
                     <div class="card-header">
                         <h3>Recent Orders</h3>
                         <button class="text-btn">View All</button>
@@ -394,13 +394,13 @@
                 </div>
 
                 <!-- Filter Bar (hidden initially) -->
-                <div class="card w-full" id="filter-bar" style="display: none;">
+                <div class="card w-full max-w-4xl mx-auto" id="filter-bar" style="display: none;">
                     <div class="filter-header">
                         <i data-lucide="filter"></i>
                         <span>Filters</span>
                     </div>
-                    <div class="filter-grid">
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                    <div class="filter-grid mt-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                         <div class="flex flex-col">
                             <label>Price Range</label>
                             <select id="price-filter">
@@ -431,7 +431,7 @@
                 </div>
 
                 <!-- Suppliers List -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6" id="suppliers-list">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 max-w-7xl mx-auto" id="suppliers-list">
                     <!-- Suppliers will be populated by JavaScript -->
                 </div>
             </div>
@@ -447,7 +447,7 @@
                 </div>
 
                 <!-- Rewards Summary -->
-                <div class="card w-full">
+                <div class="card w-full max-w-4xl mx-auto">
                     <div class="summary-content">
                         <div class="summary-info">
                             <div class="summary-icon">
@@ -469,7 +469,7 @@
                 </div>
 
                 <!-- Active Rewards -->
-                <div class="card w-full" id="active-rewards-section" style="display: none;">
+                <div class="card w-full max-w-4xl mx-auto" id="active-rewards-section" style="display: none;">
                     <div class="section-header">
                         <i data-lucide="gift"></i>
                         <h3>Active Rewards</h3>
@@ -481,7 +481,7 @@
                 </div>
 
                 <!-- No Rewards State -->
-                <div class="card w-full" id="no-rewards">
+                <div class="card w-full max-w-4xl mx-auto" id="no-rewards">
                     <div class="no-rewards-content">
                         <div class="no-rewards-icon">
                             <i data-lucide="gift"></i>
@@ -515,7 +515,7 @@
                 </div>
 
                 <!-- Savings Card (hidden initially) -->
-                <div class="card w-full" id="savings-card" style="display: none;">
+                <div class="card w-full max-w-4xl mx-auto" id="savings-card" style="display: none;">
                     <div class="savings-content">
                         <div class="savings-info">
                             <div class="savings-icon">
@@ -540,7 +540,7 @@
                 </div>
 
                 <!-- Insights Results -->
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6" id="insights-results" style="display: none;">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-6xl mx-auto" id="insights-results" style="display: none;">
                     <!-- Results will be populated by JavaScript -->
                 </div>
             </div>
@@ -556,7 +556,7 @@
                 </div>
 
                 <!-- Admin Tabs -->
-                <div class="flex border-b border-gray-200 bg-white rounded-t-xl overflow-x-auto">
+                <div class="flex border-b border-gray-200 bg-white rounded-t-xl overflow-x-auto max-w-6xl mx-auto">
                     <button class="tab-btn active" data-tab="vendors">
                         <i data-lucide="check-circle"></i>
                         <span>Vendors</span>
@@ -584,7 +584,7 @@
                 </div>
 
                 <!-- Admin Content -->
-                <div class="bg-white rounded-b-xl p-6 shadow-lg border border-gray-100 border-t-0">
+                <div class="bg-white rounded-b-xl p-6 shadow-lg border border-gray-100 border-t-0 max-w-6xl mx-auto">
                     <!-- Vendors Tab -->
                     <div class="tab-content active" id="vendors-tab">
                         <div class="tab-header">
@@ -619,7 +619,7 @@
                                 <span>Add Festival</span>
                             </button>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="festivals-grid">
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="festivals-grid">
                             <!-- Festivals will be populated by JavaScript -->
                         </div>
                     </div>
@@ -633,7 +633,7 @@
                                 <span>Add Offer</span>
                             </button>
                         </div>
-                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="offers-grid">
+                        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6" id="offers-grid">
                             <!-- Offers will be populated by JavaScript -->
                         </div>
                     </div>
