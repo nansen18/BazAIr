@@ -1,4 +1,4 @@
-# 🍲 BazAIr – AI Assistant for India’s Street Food Vendors 🇮🇳
+# 🍲 BazAIr – AI Assistant for India’s Street Food Vendors
 
 BazAIr is a lightweight, AI-powered web app designed to help India’s street food vendors reduce wastage, plan raw materials, and connect with trusted suppliers.  
 Simple. Smart. Vendor-friendly.
