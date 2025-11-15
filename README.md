@@ -6,7 +6,7 @@ Simple. Smart. Vendor-friendly.
 ---
 
 ## 🔗 Live Demo  
-👉 **https://bazair.vercel.app**
+👉 **[Click here for Demo](https://bazair-7z74bg6i6-nansens-projects.vercel.app/)**
 
 ---
 
@@ -89,6 +89,20 @@ Open index.html in your browser
 
 # Open with Live Server (VS Code)
 Right-click index.html → "Open with Live Server"
+
+---
+
+## 👥 Team – Alphabots
+
+- **Nansen Lobo J**  
+- **Surendhar S**  
+- **Roshini S**  
+- **Manoj Kumar K**
+
+We build tech for the real heroes of India’s streets — the vendors who bring warmth, taste, and culture to millions every day. 💛🍛
+
+---
+
 
 
 
