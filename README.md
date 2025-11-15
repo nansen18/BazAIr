@@ -1,107 +1,94 @@
-🍲 BazAIr – AI for India’s Street Food Heroes 🇮🇳
+# 🍲 BazAIr – AI Assistant for India’s Street Food Vendors 🇮🇳
 
-BazAIr is a lightweight AI-powered assistant designed to help India’s street food vendors manage raw materials, reduce wastage, and connect with trusted suppliers — all through a simple, mobile-friendly interface.
+BazAIr is a lightweight, AI-powered web app designed to help India’s street food vendors reduce wastage, plan raw materials, and connect with trusted suppliers.  
+Simple. Smart. Vendor-friendly.
 
-💡 Built to bring tech + trust + savings to the people who feed our streets.
+---
 
-🚀 Live Demo
+## 🔗 Live Demo  
+👉 **https://bazair.vercel.app**
 
-👉 https://bazair.vercel.app
+---
 
-🎯 Problem
+# 🎯 Problem Statement
 
-Street food vendors face daily challenges like:
+Street vendors across India still rely on guesswork to manage their daily operations. This results in:
 
-❓ Guessing how much raw material to prepare
+- ❓ Incorrect estimation of raw materials  
+- 🧊 Spoilage and wastage  
+- ⚡ Sudden shortages during peak customer demand  
+- 💸 Higher prices due to lack of bulk collaboration  
+- 🧍 No verified supplier network  
+- 📉 No way to track demand patterns or usage  
 
-🧊 Spoilage due to overstocking
+This leads to **inefficient operations, losses, and unnecessary waste**.
 
-🏃 Last-minute shortages
+---
 
-👀 No trusted supplier network
+# 💡 Solution Overview
 
-📉 No data insights to predict demand
+BazAIr introduces an AI-powered ecosystem tailored for street food vendors.
 
-Everything still runs on intuition — BazAIr fixes this.
+### ✔ SmartCart AI  
+Predicts daily ingredient quantities based on weather, past orders, footfall trends, and vendor history.
 
-💡 Our Solution
+### ✔ Supplier Match  
+Finds verified, trusted suppliers near the vendor’s location.
 
-BazAIr offers a simple, clean, AI-powered platform that helps vendors:
+### ✔ Group Order System  
+Nearby vendors can join together to place bulk orders and save money.
 
-🧠 Predict demand with SmartCart AI
+### ✔ Wastage Alerts  
+AI warns vendors when they're likely to overstock and lose money.
 
-📦 Find verified suppliers instantly
+### ✔ AI Insights Dashboard  
+Simple graphs showing demand, usage, and savings.
 
-👥 Create group bulk orders to reduce cost
+### ✔ Admin Dashboard  
+Vendor verification, supplier approval, festival themes, and feedback management.
 
-⚠️ Get Wastage Alerts before raw materials expire
+**Mission:** Reduce waste, save money, empower vendors with accessible AI.
 
-📊 Track key insights and usage patterns
+---
 
-🛠️ Admin tools to approve vendors, manage suppliers & festivals
+# 🛠️ Tech Stack
 
-Designed for zero learning curve — built for real street vendors.
+### **Frontend**
+- HTML  
+- CSS  
+- JavaScript  
+- Tailwind CSS (utility-first styling)
 
-🧠 Key Features
-Feature	Description
-🔍 SmartCart	Predicts ingredient quantity using weather, past sales & footfall
-📡 Supplier Match	Matches vendors with trusted suppliers near them
-🧺 Group Orders	Lets multiple vendors team up for bulk discounts
-📉 Wastage Warning	Alerts vendors when materials may go unused
-📈 AI Insights	Shows usage, orders, and trends with simple visuals
-🛠️ Admin Dashboard	Manage approvals, feedback, and festival boosts
-🛠️ Tech Stack
+### **AI**
+- Bolt AI (OpenAI-powered logic)  
+- Custom demand prediction & supplier matching modules
 
-Frontend:
+### **Deployment**
+- Vercel  
 
-HTML
+### **Version Control**
+- GitHub  
 
-CSS
+---
 
-JavaScript
+# ⚙️ Setup Steps
 
-Tailwind (light usage)
+BazAIr is a fully static project — no backend, no build tools.
 
-Mobile-first UI
+### **To run locally:**
 
-AI Layer:
+```bash
+# 1. Clone the repository
+git clone https://github.com/nansen18/BazAIr.git
 
-Bolt AI (OpenAI-powered logic)
+# 2. Navigate into the folder
+cd BazAIr
 
-Custom prediction modules
+# 3. Run the app
+Open index.html in your browser
 
-Hosting:
+# Open with Live Server (VS Code)
+Right-click index.html → "Open with Live Server"
 
-Vercel
 
-Version Control:
-
-GitHub
-
-This stack ensures the app stays fast, light, offline-friendly, and accessible even on low-end devices.
-
-📸 Screenshots
-
-(Add your screenshots here if needed)
-
-📂 Project Structure
-BazAIr/
-│── index.html
-│── styles/
-│── js/
-│── components/
-│── assets/
-│── README.md
-
-👥 Team – Alphabots
-
-Nansen Lobo J
-
-Mahalakshmi Raja
-
-Pavithra M
-
-Monish Kumar M
-
-We build to uplift the heroes behind India’s flavour, hustle, and heart. ❤️🍛
 
